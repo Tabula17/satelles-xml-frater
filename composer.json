@@ -1,5 +1,4 @@
 {
-
   "name": "xvii/satelles-xml-frater",
   "description": "Extensiones y utilidades para manipular e interactuar con estructuras XML",
   "autoload": {
@@ -7,6 +6,16 @@
       "Tabula17\\Satelles\\Xml\\": "src/"
     }
   },
+  "keywords":    ["xml", "editxml"],
+  "authors": [
+    {"name": "Martín Emilio Panizzo"}
+  ],
+  "extra": {
+    "branch-alias": {
+      "dev-main": "1.0.x-dev"
+    }
+  },
+  "homepage": "https://github.com/Tabula17/satelles-xml-frater",
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
