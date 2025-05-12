@@ -1,0 +1,22 @@
+{
+
+  "name": "xvii/satelles-xml-frater",
+  "description": "Extensiones y utilidades para manipular e interactuar con estructuras XML",
+  "autoload": {
+    "psr-4": {
+      "Tabula17\\Satelles\\Xml\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": ">=8.4",
+    "ext-simplexml": "*",
+    "ext-libxml": "*",
+    "ext-dom": "*"
+  },
+  "require-dev": {
+  },
+  "suggest": {
+  }
+}
