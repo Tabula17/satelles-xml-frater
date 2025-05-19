@@ -13,7 +13,7 @@ use const PHP_VERSION_ID;
  */
 class XmlPart extends SimpleXMLElement
 {
-    private ?DOMElement $domCache = null;
+    private null|XmlPart|DOMElement $domCache = null;
 
     /**
      * @param string $xmlFile
@@ -36,7 +36,7 @@ class XmlPart extends SimpleXMLElement
     }
 
 
-    private function asDomNode(): DOMElement
+    private function asDomNode(): XmlPart|DOMElement
     {
         if ($this->domCache === null) {
             $this->domCache = dom_import_simplexml($this);
@@ -137,7 +137,8 @@ class XmlPart extends SimpleXMLElement
      */
     public function setAttribute(string $name, string $value): void
     {
-        $dom = dom_import_simplexml($this);
+        //$dom = dom_import_simplexml($this);
+        $dom = $this->asDomNode();
         $dom->setAttribute($name, $value);
 
     }
