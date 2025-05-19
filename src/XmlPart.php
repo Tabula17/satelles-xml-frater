@@ -13,7 +13,7 @@ use const PHP_VERSION_ID;
  */
 class XmlPart extends SimpleXMLElement
 {
-    private null|XmlPart|DOMElement $domCache = null;
+    //private null|XmlPart|DOMElement $domCache = null;
 
     /**
      * @param string $xmlFile
@@ -29,7 +29,7 @@ class XmlPart extends SimpleXMLElement
             throw new InvalidXmlException("XML mal formado o inseguro");
         }
     }
-
+/*
     public function __destruct()
     {
         $this->domCache = null;
@@ -42,7 +42,7 @@ class XmlPart extends SimpleXMLElement
             $this->domCache = dom_import_simplexml($this);
         }
         return $this->domCache;
-    }
+    }*/
 
     /**
      * Replaces the current SimpleXMLElement with the provided SimpleXMLElement.
