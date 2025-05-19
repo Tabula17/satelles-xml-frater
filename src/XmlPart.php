@@ -36,7 +36,7 @@ class XmlPart extends SimpleXMLElement
     }
 
 
-    private function asDomNode(): DOMElement
+    private function asDomNode(): DOMElement|XmlPart
     {
         if ($this->domCache === null) {
             $this->domCache = dom_import_simplexml($this);
