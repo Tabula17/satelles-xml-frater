@@ -36,7 +36,7 @@ class XmlPart extends SimpleXMLElement
     }
 
 
-    private function asDomNode(): DOMElement|XmlPart
+    private function asDomNode(): DOMElement
     {
         if ($this->domCache === null) {
             $this->domCache = dom_import_simplexml($this);
@@ -137,7 +137,7 @@ class XmlPart extends SimpleXMLElement
      */
     public function setAttribute(string $name, string $value): void
     {
-        $dom = $this->asDomNode();
+        $dom = dom_import_simplexml($this);
         $dom->setAttribute($name, $value);
 
     }
