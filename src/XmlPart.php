@@ -52,12 +52,9 @@ class XmlPart extends SimpleXMLElement
      */
     public function replace(SimpleXMLElement $element): void
     {
-        $dom = $this->asDomNode();
-        $import = $dom->ownerDocument->importNode(
-            $element instanceof self ? $element->asDomNode() : dom_import_simplexml($element),
-            true);
+        $dom = dom_import_simplexml($this);
+        $import = $dom->ownerDocument->importNode(dom_import_simplexml($element), true);
         $dom->parentNode->replaceChild($import, $dom);
-        $this->domCache = null;
     }
 
     /**
@@ -68,14 +65,10 @@ class XmlPart extends SimpleXMLElement
      */
     public function replaceWithText(string $text): void
     {
-        /*$dom = dom_import_simplexml($this);
+        $dom = dom_import_simplexml($this);
         $parent = $dom->parentNode;
         $parent->removeChild($dom);
-        $parent->nodeValue = $text;*/
-        $dom = $this->asDomNode();
-        $textNode = $dom->ownerDocument->createTextNode($text);
-        $dom->parentNode->replaceChild($textNode, $dom);
-        $this->domCache = null;
+        $parent->nodeValue = $text;
     }
 
     /**
@@ -85,9 +78,8 @@ class XmlPart extends SimpleXMLElement
      */
     public function delete(): void
     {
-        $dom = $this->asDomNode();
+        $dom = dom_import_simplexml($this);
         $dom->parentNode->removeChild($dom);
-        $this->domCache = null;
     }
 
     /**
@@ -95,7 +87,7 @@ class XmlPart extends SimpleXMLElement
      */
     public function getNodePath(): ?string
     {
-        return $this->asDomNode()->getNodePath();
+        return dom_import_simplexml($this)->getNodePath();
     }
 
     /**
@@ -103,29 +95,15 @@ class XmlPart extends SimpleXMLElement
      *
      * @return XmlPart The duplicated XML element.
      */
-    public function duplicate(bool $before = true): XmlPart
+    public function duplicate(): XmlPart
     {
-        /*      $dom = dom_import_simplexml($this);
-              $clone = $dom->ownerDocument->importNode(dom_import_simplexml($this)->cloneNode(true), true);
-              //$dom->parentNode->appendChild($clone);
-              $dom->parentNode->insertBefore($clone, $dom);
-              $path = $clone->getNodePath();
-              return $this->xpath($path)[0];
-      */
+        $dom = dom_import_simplexml($this);
+        $clone = $dom->ownerDocument->importNode(dom_import_simplexml($this)->cloneNode(true), true);
+        //$dom->parentNode->appendChild($clone);
+        $dom->parentNode->insertBefore($clone, $dom);
+        $path = $clone->getNodePath();
+        return $this->xpath($path)[0];
 
-        $dom = $this->asDomNode();
-        $clone = $dom->cloneNode(true);
-
-        $inserted = $before
-            ? $dom->parentNode->insertBefore($clone, $dom)
-            : $dom->parentNode->insertBefore($clone, $dom->nextSibling);
-
-        /**
-         * @var XmlPart $out
-         */
-        $out =  simplexml_import_dom($inserted, get_class($this));
-        $this->domCache = null;
-        return $out;
     }
 
     /**
@@ -137,8 +115,7 @@ class XmlPart extends SimpleXMLElement
      */
     public function setAttribute(string $name, string $value): void
     {
-        //$dom = dom_import_simplexml($this);
-        $dom = $this->asDomNode();
+        $dom = dom_import_simplexml($this);
         $dom->setAttribute($name, $value);
 
     }
@@ -161,9 +138,7 @@ class XmlPart extends SimpleXMLElement
      */
     public function removeAttribute(string $name): void
     {
-        if ($this->hasAttribute($name)) {
-            $dom = $this->asDomNode();
-            $dom->removeAttribute($name);
-        }
+        $dom = dom_import_simplexml($this);
+        $dom->removeAttribute($name);
     }
 }
