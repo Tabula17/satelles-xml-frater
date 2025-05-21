@@ -129,7 +129,8 @@ class XmlPart extends SimpleXMLElement
 
     public function hasAttribute(string $name): bool
     {
-        return $this->asDomNode()->hasAttribute($name);
+        $dom = dom_import_simplexml($this);
+        return $this->$dom->hasAttribute($name);
     }
 
     /**
