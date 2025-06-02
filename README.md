@@ -1,4 +1,7 @@
-# XVII: satelles-xml-frater
+# XVII: 🛰️ satelles-xml-frater
+![PHP Version](https://img.shields.io/badge/PHP-8.4%2B-blue)
+![License](https://img.shields.io/github/license/Tabula17/satelles-xml-frater)
+![Last commit](https://img.shields.io/github/last-commit/Tabula17/satelles-xml-frater)
 
 Una librería PHP para gestionar y manipular elementos XML de forma sencilla y segura, extendiendo la funcionalidad de `SimpleXMLElement`.
 
@@ -47,6 +50,15 @@ Puedes ejecutar las pruebas con:
 composer test
 ```
 
+
 ## Licencia
 
-MIT
+MIT License
+
+## Soporte
+
+Para reportar problemas o solicitar nuevas características:
+1. Revisa los issues existentes
+2. Abre un nuevo issue con los detalles del problema o sugerencia
+
+###### 🌌 Ad astra per codicem
